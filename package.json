@@ -1,0 +1,18 @@
+{
+  "name": "primeira-api-nodejs",
+  "version": "1.0.0",
+  "description": "Minha primeira API",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "primeira-api-nodejs"
+  },
+  "keywords": [
+    "primeira-api"
+  ],
+  "author": "Rafael Kashirajima",
+  "license": "ISC"
+}
