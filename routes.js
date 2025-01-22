@@ -1,4 +1,4 @@
-import { url } from "inspector";
+import fs from 'fs';
 
 export default function rotas(req, res, dado) {
     res.setHeader('Content-Type', 'application/json; charset=utf-8');
@@ -27,14 +27,25 @@ export default function rotas(req, res, dado) {
                 JSON.stringify(resposta);
                 return;
             }
-        })
-    }
+            fs.writeFile(`${arquivo.nome}.txt`, arquivo?.conteudo ?? '', 'utf-8', (erro) => {
+
+                if(erro) {
+                    console.log('Falha ao escrever o arquivo', erro);
+                    res.statusCode = 500;
+                    const resposta = {
+                        erro: {
+                            mensagem: 'Erro ao criar o arquivo'
+                        }
+                    };
+                    res.end(JSON.stringify(resposta));
+                }
+            })
+        }
+    res.statusCode = 404;
+        const resposta = {
+            mensagem: 'Recurso não encontrado',
+            url: req.url
+        }
+        res.end(JSON.stringify(resposta));
+    };
 }
-
-
-res.statusCode = 404;
-const resposta = {
-    mensagem: 'Recurso não encontrado',
-    url: req.url
-};
-res.end(JSON.stringify(resposta));
