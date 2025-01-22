@@ -11,25 +11,26 @@ export default function rotas(req, res, dado) {
         res.end(JSON.stringify(resposta));
         return;
     }
-}
-if (req.method === 'POST' && req.url === '/arquivos') {
-    const corpo = [];
-    req.on('data', (parte) => {
-        corpo.push(parte);
-    });
-    req.on('end', () => {
-        const arquivo = JSON.parse(corpo);
-        if (!arquivo?.nome) {
-            const resposta = {
-                erro: {
-                    mensagem: 'Arquivo não foi encontrado, porém é obrigatório'
+    if (req.method === 'POST' && req.url === '/arquivos') {
+        const corpo = [];
+        req.on('data', (parte) => {
+            corpo.push(parte);
+        });
+        req.on('end', () => {
+            const arquivo = JSON.parse(corpo);
+            if (!arquivo?.nome) {
+                const resposta = {
+                    erro: {
+                        mensagem: 'Arquivo não foi encontrado, porém é obrigatório'
+                    }
                 }
+                JSON.stringify(resposta);
+                return;
             }
-            JSON.stringify(resposta);
-            return;
-        }
-    })
+        })
+    }
 }
+
 
 res.statusCode = 404;
 const resposta = {
