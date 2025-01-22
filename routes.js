@@ -41,11 +41,12 @@ export default function rotas(req, res, dado) {
                 }
             })
         }
-    res.statusCode = 404;
+        res.statusCode = 404; // Define explicitamente o status de recurso não encontrado
         const resposta = {
             mensagem: 'Recurso não encontrado',
             url: req.url
-        }
-        res.end(JSON.stringify(resposta));
+        };
+        res.end(JSON.stringify(resposta)); // Envia a resposta ao cliente no formato JSON
+        
     };
 }
