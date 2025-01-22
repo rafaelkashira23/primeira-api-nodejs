@@ -22,9 +22,11 @@ if (req.method === 'POST' && req.url === '/arquivos') {
         if (!arquivo?.nome) {
             const resposta = {
                 erro: {
-                    mensagem: 'Arquivo não foi encontrado'
+                    mensagem: 'Arquivo não foi encontrado, porém é obrigatório'
                 }
             }
+            JSON.stringify(resposta);
+            return;
         }
     })
 }
