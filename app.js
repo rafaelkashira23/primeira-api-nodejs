@@ -1,7 +1,7 @@
 //importação do módulo http e do módulo fs
 import http from 'http';
 import fs from 'fs';
-import rotas from './routes';
+import rotas from './routes.js';
 
 //criação de arquivo de texto
 fs.writeFile('mensagem.txt', 'Olá, TIC em trilhas do arquivo!', 'utf-8', (erro)=>{
