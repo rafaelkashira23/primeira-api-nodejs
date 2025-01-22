@@ -9,7 +9,8 @@ export default function rotas (req, res, dado){
             mensagem: conteudo
         };
         res.end(JSON.stringify(resposta));
-    return;
+        return;
+    }
     }
     if(req.method === 'POST' && req.url === '/arquivos'){
         const corpo = [];
@@ -20,7 +21,7 @@ export default function rotas (req, res, dado){
             const arquivo = JSON.parse(corpo);
             if(!arquivo?.nome) {
                 const resposta = {
-                    erro {
+                    erro: {
                         mensagem: 'Arquivo não foi encontrado'
                     }
                 }
