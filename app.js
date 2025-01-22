@@ -1,6 +1,6 @@
 //importação do módulo http e do módulo fs
 import http from 'http';
-import fs, { writeFile } from 'fs';
+import fs from 'fs';
 
 //criação de arquivo de texto
 fs.writeFile('mensagem.txt', 'Olá, TIC em trilhas do arquivo!', 'utf-8', (erro)=>{
