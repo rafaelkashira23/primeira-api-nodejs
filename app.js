@@ -6,18 +6,29 @@ import fs from 'fs';
 fs.writeFile('mensagem.txt', 'Olá, TIC em trilhas do arquivo!', 'utf-8', (erro)=>{
     if(erro){
         console.log('Falha ao escrever o arquivo', erro);
+        return;
     }
     console.log('Arquivo criado com sucesso!');
-}
+});
 
-//criação do servidor
+//leitura de arquivo de texto
+fs.readFile('mensagem.txt', 'utf-8', (erro, conteudo)=>{
+    if(erro){
+        console.log('Falha ao ler o arquivo', erro);
+        return;
+    }
+    console.log('Conteúdo do arquivo    :', conteudo);
+    inicializaServidor(conteudo);});
+
+//função para inicializar o servidor
+function inicializaServidor(mensagem){
 const servidor = http.createServer((req, res) => {
     res.statusCode = 200;
     res.setHeader('Content-Type', 'text/plain; charset=utf-8');
-    res.end('Olá, TIC em trilhas.\n');
+    res.end(mensagem);
 });
 const porta = 3000;
 const host = 'localhost';
 servidor.listen(porta, host, () => {
     console.log(`Servidor executando em http://${host}:${porta}/`);
-});
+});}
