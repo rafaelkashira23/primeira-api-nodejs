@@ -29,7 +29,7 @@ export default function rotas(req, res, dado) {
             }
             fs.writeFile(`${arquivo.nome}.txt`, arquivo?.conteudo ?? '', 'utf-8', (erro) => {
 
-                if(erro) {
+                if (erro) {
                     console.log('Falha ao escrever o arquivo', erro);
                     res.statusCode = 500;
                     const resposta = {
@@ -38,15 +38,17 @@ export default function rotas(req, res, dado) {
                         }
                     };
                     res.end(JSON.stringify(resposta));
+                    return;
                 }
             })
         }
-        res.statusCode = 404; // Define explicitamente o status de recurso não encontrado
-        const resposta = {
-            mensagem: 'Recurso não encontrado',
-            url: req.url
-        };
-        res.end(JSON.stringify(resposta)); // Envia a resposta ao cliente no formato JSON
         
     };
+    res.statusCode = 404; // Define explicitamente o status de recurso não encontrado
+    const resposta = {
+        mensagem: 'Recurso não encontrado',
+        url: req.url
+    };
+    res.end(JSON.stringify(resposta)); // Envia a resposta ao cliente no formato JSON
+    return;
 }
