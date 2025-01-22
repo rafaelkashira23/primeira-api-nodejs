@@ -35,4 +35,3 @@ const resposta = {
     url: req.url
 };
 res.end(JSON.stringify(resposta));
-return;
