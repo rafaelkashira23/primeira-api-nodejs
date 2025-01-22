@@ -1,6 +1,7 @@
 //importação do módulo http e do módulo fs
 import http from 'http';
 import fs from 'fs';
+import rotas from './routes';
 
 //criação de arquivo de texto
 fs.writeFile('mensagem.txt', 'Olá, TIC em trilhas do arquivo!', 'utf-8', (erro)=>{
@@ -21,11 +22,9 @@ fs.readFile('mensagem.txt', 'utf-8', (erro, conteudo)=>{
     inicializaServidor(conteudo);});
 
 //função para inicializar o servidor
-function inicializaServidor(mensagem){
+function inicializaServidor(conteudo){
 const servidor = http.createServer((req, res) => {
-    res.statusCode = 200;
-    res.setHeader('Content-Type', 'text/plain; charset=utf-8');
-    res.end(mensagem);
+    rotas(req, res, { conteudo });
 });
 const porta = 3000;
 const host = 'localhost';
